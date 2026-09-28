@@ -1,168 +1,1651 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Mi Tienda</title>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ProStore - Tu Tienda Digital Premier</title>
 <style>
-:root{--pk:#ff5fa2;--pu:#8b5cf6;--bg:#fbf9ff;--tx:#1d1530;--mut:#7d7394;--g:linear-gradient(135deg,var(--pk),var(--pu));--glass:rgba(255,255,255,.55)}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden}
-.blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.45;z-index:-1;animation:float 14s ease-in-out infinite}
-.b1{width:340px;height:340px;background:var(--pk);top:-80px;left:-80px}
-.b2{width:380px;height:380px;background:var(--pu);bottom:-100px;right:-100px;animation-delay:-6s}
-@keyframes float{50%{transform:translate(50px,40px) scale(1.15)}}
-.glass{background:var(--glass);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border:1px solid rgba(255,255,255,.8);box-shadow:0 10px 40px rgba(139,92,246,.15)}
-header{position:sticky;top:0;z-index:20;padding:14px 18px;display:flex;align-items:center;gap:10px;border-radius:0 0 26px 26px}
-h1{margin:0;font-size:24px;letter-spacing:-.5px;flex:1;background:linear-gradient(90deg,var(--pk),var(--pu),var(--pk));background-size:200% auto;-webkit-background-clip:text;color:transparent;animation:shine 4s linear infinite}
-@keyframes shine{to{background-position:200% center}}
-.ib{border:0;background:#fff;width:42px;height:42px;border-radius:50%;font-size:18px;cursor:pointer;position:relative;box-shadow:0 4px 14px rgba(139,92,246,.2);transition:transform .2s}
-.ib:active{transform:scale(.85)}
-.badge{position:absolute;top:-4px;right:-4px;background:var(--g);color:#fff;font-size:11px;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center}
-.pop{animation:pop .4s}@keyframes pop{50%{transform:scale(1.4)}}
-main{max-width:1000px;margin:0 auto;padding:16px}
-.bar{display:flex;gap:8px;margin-bottom:12px}
-input,select,textarea{font:inherit;width:100%;padding:12px 14px;border-radius:14px;border:1px solid #e6def7;background:rgba(255,255,255,.8);outline:none}
-input:focus,select:focus,textarea:focus{border-color:var(--pu);box-shadow:0 0 0 3px rgba(139,92,246,.18)}
-.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:8px}
-.chip{border:0;padding:8px 16px;border-radius:20px;background:#fff;color:var(--mut);cursor:pointer;white-space:nowrap;font:inherit;font-size:14px;transition:.25s}
-.chip.on{background:var(--g);color:#fff;transform:scale(1.05)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
-.card{border-radius:24px;overflow:hidden;cursor:pointer;animation:in .6s both,pulseX 3.2s ease-in-out infinite;transition:transform .3s}
-@keyframes in{from{opacity:0;transform:translateY(30px) scale(.92)}}
-@keyframes pulseX{0%,100%{transform:translateX(0)}30%{transform:translateX(-5px)}60%{transform:translateX(5px)}}
-.card:hover{animation-play-state:running,paused;transform:translateY(-6px) rotate(-.6deg)}
-.card .im{aspect-ratio:1;background:#efe8fb center/cover;position:relative}
-.card .info{padding:10px 12px 14px}
-.card b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.price{font-weight:700;font-size:17px;background:var(--g);-webkit-background-clip:text;color:transparent}
-.heart{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.85);border:0;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer}
-.tag{position:absolute;left:8px;top:8px;background:var(--g);color:#fff;font-size:11px;padding:3px 9px;border-radius:12px}
-.ov{position:fixed;inset:0;background:rgba(40,20,80,.35);backdrop-filter:blur(6px);z-index:40;display:none;align-items:flex-end;justify-content:center}
-.ov.show{display:flex;animation:fade .3s}@keyframes fade{from{opacity:0}}
-.sheet{width:100%;max-width:520px;max-height:92vh;overflow:auto;border-radius:32px 32px 0 0;padding:0 0 24px;animation:up .55s cubic-bezier(.2,1.2,.3,1)}
-@keyframes up{from{transform:translateY(100%) scale(.9)}}
-.sheet .hero{aspect-ratio:1.2;background:#efe8fb center/cover}
-.pad{padding:18px 20px}
-.btn{border:0;font:inherit;font-weight:600;color:#fff;background:var(--g);padding:14px 20px;border-radius:16px;cursor:pointer;width:100%;position:relative;overflow:hidden;transition:transform .15s}
-.btn:active{transform:scale(.95)}.btn.sec{background:#fff;color:var(--pu);border:1px solid #e6def7}
-.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.6);transform:scale(0);animation:rip .6s}
-@keyframes rip{to{transform:scale(4);opacity:0}}
-.acc{border-radius:18px;margin-top:12px;overflow:hidden}
-.acc>button{width:100%;border:0;background:transparent;font:inherit;font-weight:600;padding:14px 16px;display:flex;justify-content:space-between;cursor:pointer;color:var(--tx)}
-.acc .body{max-height:0;transition:max-height .5s cubic-bezier(.3,1,.4,1);padding:0 16px}
-.acc.open{background:linear-gradient(135deg,rgba(255,95,162,.18),rgba(139,92,246,.22))}
-.acc.open .body{max-height:420px;padding-bottom:14px}
-.acc .arrow{transition:transform .4s}.acc.open .arrow{transform:rotate(180deg)}
-.pm{display:flex;align-items:center;gap:10px;padding:12px;margin-top:8px;border-radius:14px;background:rgba(255,255,255,.75);cursor:pointer;transition:.2s}
-.pm:hover{transform:translateX(6px)}
-.cuo{font-size:13px;color:var(--mut);margin:4px 0}
-.row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0}
-.toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,120px);background:var(--tx);color:#fff;padding:12px 20px;border-radius:24px;z-index:99;transition:.5s cubic-bezier(.2,1.4,.4,1)}
-.toast.show{transform:translate(-50%,0)}
-.contact{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;justify-content:center}
-.contact a{padding:10px 18px;border-radius:20px;text-decoration:none;color:var(--pu);font-weight:600}
-label{font-size:13px;color:var(--mut);display:block;margin:10px 0 4px}
-.adm .it{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #eee}
-.adm .it img{width:44px;height:44px;border-radius:10px;object-fit:cover;background:#eee}
-.sm{border:0;background:#f1eafd;color:var(--pu);border-radius:10px;padding:7px 11px;cursor:pointer;font:inherit;font-size:13px}
-.empty{text-align:center;color:var(--mut);padding:50px 0}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style></head><body>
-<div class="blob b1"></div><div class="blob b2"></div>
-<header class="glass"><h1 id="sn">Mi Tienda</h1>
-<button class="ib" onclick="openCart()" aria-label="Carrito">🛍️<span class="badge" id="cb">0</span></button>
-<button class="ib" onclick="adminLogin()" aria-label="Admin">⚙️</button></header>
+:root {
+  --pk: #ec4899;
+  --pk-hover: #db2777;
+  --pu: #8b5cf6;
+  --pu-dark: #6d28d9;
+  --bg: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-modal: #ffffff;
+  --tx: #0f172a;
+  --tx-mut: #64748b;
+  --border: #e2e8f0;
+  --g: linear-gradient(135deg, #ec4899, #8b5cf6);
+  --g-subtle: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(139, 92, 246, 0.08));
+  --glass: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 10px 25px -5px rgba(139, 92, 246, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 20px 35px -10px rgba(15, 23, 42, 0.18);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+}
+
+[data-theme="dark"] {
+  --bg: #0b0f17;
+  --bg-card: rgba(23, 32, 51, 0.8);
+  --bg-modal: #131c2e;
+  --tx: #f1f5f9;
+  --tx-mut: #94a3b8;
+  --border: #1e293b;
+  --glass: rgba(19, 28, 46, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 35px -10px rgba(0, 0, 0, 0.7);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--tx);
+  min-height: 100vh;
+  padding-bottom: 80px;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Background animated gradients */
+.blob-container { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: -1; }
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: float 16s ease-in-out infinite;
+}
+.b1 { width: 380px; height: 380px; background: var(--pk); top: -100px; left: -100px; }
+.b2 { width: 420px; height: 420px; background: var(--pu); bottom: -120px; right: -120px; animation-delay: -8s; }
+.b3 { width: 300px; height: 300px; background: #3b82f6; top: 40%; left: 60%; animation-delay: -4s; }
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 50px) scale(1.1); }
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md);
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: var(--g);
+  display: grid;
+  place-items: center;
+  color: white;
+  box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35);
+}
+.brand-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: var(--g);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+
+/* Icon Buttons */
+.ib {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--tx);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ib:hover { transform: translateY(-2px); border-color: var(--pu); color: var(--pu); }
+.ib:active { transform: scale(0.92); }
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--g);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 6px rgba(236, 72, 153, 0.4);
+}
+.pop { animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+@keyframes pop { 50% { transform: scale(1.35); } }
+
+/* Main Container */
+main { max-width: 1100px; margin: 0 auto; padding: 20px 16px; }
+
+/* Hero Banner */
+.hero-banner {
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  margin-bottom: 24px;
+  background: var(--g-subtle);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-content { max-width: 520px; }
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--g);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.hero-title { font-size: 28px; font-weight: 800; margin: 0 0 10px; line-height: 1.2; }
+.hero-desc { color: var(--tx-mut); margin: 0 0 18px; font-size: 15px; line-height: 1.5; }
+
+/* Search and Filters Bar */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+.search-wrapper {
+  flex: 1;
+  min-width: 240px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-wrapper .search-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--tx-mut);
+  pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--tx);
+  outline: none;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.search-input:focus {
+  border-color: var(--pu);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+.select-custom {
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--tx);
+  outline: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.select-custom:focus { border-color: var(--pu); }
+
+/* Category Chips */
+.chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  border: 1px solid var(--border);
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: var(--bg-card);
+  color: var(--tx-mut);
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.chip:hover { border-color: var(--pu); color: var(--tx); }
+.chip.on {
+  background: var(--g);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+/* Product Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+.card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+.card .im {
+  aspect-ratio: 1;
+  background: var(--bg-modal) center/cover no-repeat;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card .im img, .card .im svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.card:hover .im img, .card:hover .im svg { transform: scale(1.06); }
+.card .info { padding: 14px; flex: 1; display: flex; flex-direction: column; }
+.card .cat-tag { font-size: 11px; font-weight: 600; color: var(--pu); text-transform: uppercase; margin-bottom: 4px; }
+.card b { font-size: 15px; font-weight: 700; color: var(--tx); line-height: 1.3; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card .rating-row { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--warning); margin-bottom: 8px; }
+.card .price-row { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.price { font-weight: 800; font-size: 18px; background: var(--g); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.heart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  border: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  color: #64748b;
+  transition: all 0.2s;
+  z-index: 5;
+}
+.heart.active { color: var(--pk); }
+.heart:hover { transform: scale(1.1); }
+.tag {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background: var(--g);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 5;
+}
+
+/* Modals & Overlays */
+.ov {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 50;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+.ov.show { display: flex; animation: fadeIn 0.25s ease-out; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.sheet {
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  background: var(--bg-modal);
+  border: 1px solid var(--border);
+  padding: 0 0 24px;
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-lg);
+  color: var(--tx);
+}
+@media (min-width: 640px) {
+  .ov { align-items: center; padding: 20px; }
+  .sheet { border-radius: var(--radius-xl); max-height: 85vh; }
+}
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+.sheet-header {
+  position: sticky;
+  top: 0;
+  background: var(--bg-modal);
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+.sheet-title { font-size: 18px; font-weight: 700; margin: 0; }
+.pad { padding: 20px; }
+
+/* Buttons */
+.btn {
+  border: 0;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  background: var(--g);
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(236, 72, 153, 0.3);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(236, 72, 153, 0.45); }
+.btn:active { transform: scale(0.97); }
+.btn.sec {
+  background: var(--bg-card);
+  color: var(--tx);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.btn.sec:hover { border-color: var(--pu); color: var(--pu); }
+.btn.sm { width: auto; padding: 8px 14px; font-size: 13px; border-radius: var(--radius-sm); }
+.btn.danger { background: #ef4444; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+
+/* Accordion & Form Controls */
+.acc {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-top: 12px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+.acc > button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  color: var(--tx);
+}
+.acc .body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; padding: 0 16px; }
+.acc.open .body { max-height: 800px; padding: 0 16px 16px; }
+.acc .arrow { transition: transform 0.3s; }
+.acc.open .arrow { transform: rotate(180deg); }
+
+label { font-size: 13px; font-weight: 600; color: var(--tx-mut); display: block; margin: 12px 0 6px; }
+input, select, textarea {
+  font: inherit;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--tx);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--pu);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+/* Rows & Flex items */
+.row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; }
+.row + .row { border-top: 1px dashed var(--border); }
+
+/* Toast */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 84px;
+  transform: translate(-50%, 120px);
+  background: #0f172a;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 30px;
+  z-index: 100;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+.toast.show { transform: translate(-50%, 0); }
+
+/* Mobile Bottom Navigation Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 40;
+}
+.bnav-btn {
+  border: 0;
+  background: transparent;
+  color: var(--tx-mut);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 12px;
+  transition: all 0.2s;
+  position: relative;
+}
+.bnav-btn.active, .bnav-btn:hover { color: var(--pu); }
+
+/* Admin Grid Cards */
+.admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.stat-card {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--g-subtle);
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.stat-card .val { font-size: 22px; font-weight: 800; color: var(--pu); }
+.stat-card .lbl { font-size: 12px; color: var(--tx-mut); font-weight: 600; }
+
+.empty { text-align: center; color: var(--tx-mut); padding: 50px 20px; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="blob-container">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+
+<header class="glass">
+  <a class="brand" onclick="navigateTo('home')">
+    <div class="brand-logo" id="headerLogo"></div>
+    <h1 class="brand-title" id="sn">ProStore</h1>
+  </a>
+  <div class="nav-actions">
+    <button class="ib" onclick="toggleTheme()" id="themeBtn" aria-label="Cambiar Tema"></button>
+    <button class="ib" onclick="openCart()" aria-label="Carrito de Compras">
+      <span id="cartIconContainer"></span>
+      <span class="badge" id="cb">0</span>
+    </button>
+    <button class="ib" onclick="adminLogin()" aria-label="Administración" id="adminHeaderBtn"></button>
+  </div>
+</header>
+
 <main>
-<div class="bar"><input id="q" placeholder="Buscar productos…" oninput="render()"><select id="ord" onchange="render()" style="width:auto"><option value="">Orden</option><option value="a">Precio ↑</option><option value="d">Precio ↓</option></select></div>
-<div class="chips" id="chips"></div>
-<div class="grid" id="grid"></div>
-<div class="contact" id="ct"></div>
+  <!-- Hero Promo Section -->
+  <div class="hero-banner glass" id="heroBanner">
+    <div class="hero-content">
+      <span class="hero-tag" id="heroTag">⚡ Envíos gratis a todo el país</span>
+      <h2 class="hero-title">Encontrá lo último en Tecnología & Estilo</h2>
+      <p class="hero-desc">Productos seleccionados con la mejor calidad, cuotas sin interés y atención personalizada.</p>
+    </div>
+  </div>
+
+  <!-- Search & Order Controls -->
+  <div class="filter-bar">
+    <div class="search-wrapper">
+      <span class="search-icon" id="searchIcon"></span>
+      <input id="q" class="search-input" placeholder="Buscar productos por nombre..." oninput="render()">
+    </div>
+    <select id="ord" class="select-custom" onchange="render()">
+      <option value="">Destacados</option>
+      <option value="a">Precio: Menor a Mayor</option>
+      <option value="d">Precio: Mayor a Menor</option>
+      <option value="r">Mejor Valorados</option>
+    </select>
+  </div>
+
+  <!-- Category Chips -->
+  <div class="chips" id="chips"></div>
+
+  <!-- Products Grid -->
+  <div class="grid" id="grid"></div>
+
+  <!-- Store Contact Section -->
+  <div style="margin-top: 40px;" class="glass pad" style="border-radius: var(--radius-lg)">
+    <h3 style="margin-top:0; font-size:18px; text-align:center;">¿Tenés dudas? Contactanos directamente</h3>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;" id="ct"></div>
+  </div>
 </main>
-<div class="ov" id="ov" onclick="if(event.target===this)closeOv()"><div class="sheet glass" id="sh"></div></div>
+
+<!-- Bottom Nav Bar for Mobile & Quick Access -->
+<nav class="bottom-nav">
+  <button class="bnav-btn active" id="navHome" onclick="navigateTo('home')">
+    <span id="iconNavHome"></span>
+    <span>Inicio</span>
+  </button>
+  <button class="bnav-btn" id="navFavs" onclick="navigateTo('favs')">
+    <span id="iconNavFavs"></span>
+    <span>Favoritos</span>
+  </button>
+  <button class="bnav-btn" id="navOrders" onclick="openOrderTracker()">
+    <span id="iconNavOrders"></span>
+    <span>Mis Pedidos</span>
+  </button>
+  <button class="bnav-btn" id="navAdmin" onclick="adminLogin()">
+    <span id="iconNavAdmin"></span>
+    <span>Panel Admin</span>
+  </button>
+</nav>
+
+<!-- Modal Overlay Sheet -->
+<div class="ov" id="ov" onclick="if(event.target===this)closeOv()">
+  <div class="sheet" id="sh"></div>
+</div>
+
+<!-- Toast Notification -->
 <div class="toast" id="tt"></div>
+
 <script>
-const $=id=>document.getElementById(id),K='tienda_v1';
-const dflt={cfg:{name:'Mi Tienda',pass:'1234',phone:'',whats:'',insta:'',fb:'',tiktok:'',card:true,mp:true,mpLink:'',cur:'$',maxCuotas:6},
-prods:[
-{id:1,name:'Auriculares Glass',price:59990,cat:'Audio',desc:'Cancelación de ruido y 30 h de batería.',cuotas:6,img:svg('#ff5fa2','#8b5cf6','🎧'),stock:8},
-{id:2,name:'Reloj Aura',price:89990,cat:'Relojes',desc:'Pantalla AMOLED, sumergible.',cuotas:12,img:svg('#8b5cf6','#ff9ec7','⌚'),stock:5},
-{id:3,name:'Lámpara Orb',price:24990,cat:'Hogar',desc:'Luz ambiental con 16 colores.',cuotas:3,img:svg('#ffb3d9','#a78bfa','💡'),stock:12}]};
-function svg(a,b,e){return 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="400" height="400" fill="url(#g)"/><text x="200" y="245" font-size="150" text-anchor="middle">${e}</text></svg>`)}
-let S=JSON.parse(localStorage.getItem(K)||'null')||dflt,cart=JSON.parse(localStorage.getItem(K+'c')||'[]'),fav=JSON.parse(localStorage.getItem(K+'f')||'[]'),cat='Todos',isAdm=false;
-S.cfg={...dflt.cfg,...S.cfg};
-const save=()=>{try{localStorage.setItem(K,JSON.stringify(S));localStorage.setItem(K+'c',JSON.stringify(cart));localStorage.setItem(K+'f',JSON.stringify(fav))}catch(e){toast('Almacenamiento lleno: usa imágenes más chicas')}};
-const fmt=n=>S.cfg.cur+Number(n).toLocaleString('es-AR');
-function toast(t){const e=$('tt');e.textContent=t;e.classList.add('show');clearTimeout(e.t);e.t=setTimeout(()=>e.classList.remove('show'),2200)}
-function rip(e){const b=e.currentTarget,r=document.createElement('span'),s=Math.max(b.offsetWidth,b.offsetHeight)/4,p=b.getBoundingClientRect();r.className='rip';r.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-p.left-s/2}px;top:${e.clientY-p.top-s/2}px`;b.appendChild(r);setTimeout(()=>r.remove(),600)}
-document.addEventListener('click',e=>{if(e.target.closest('.btn'))rip({currentTarget:e.target.closest('.btn'),clientX:e.clientX,clientY:e.clientY})});
-function render(){
- $('sn').textContent=S.cfg.name;document.title=S.cfg.name;
- const cats=['Todos','❤️ Favoritos',...new Set(S.prods.map(p=>p.cat).filter(Boolean))];
- $('chips').innerHTML=cats.map(c=>`<button class="chip ${c===cat?'on':''}" onclick="cat='${c}';render()">${c}</button>`).join('');
- let l=S.prods.filter(p=>(cat==='Todos'||(cat==='❤️ Favoritos'?fav.includes(p.id):p.cat===cat))&&p.name.toLowerCase().includes($('q').value.toLowerCase()));
- if($('ord').value==='a')l.sort((a,b)=>a.price-b.price);if($('ord').value==='d')l.sort((a,b)=>b.price-a.price);
- $('grid').innerHTML=l.map((p,i)=>`<div class="card glass" style="animation-delay:${i*.08}s,${i*.35}s" onclick="openP(${p.id})"><div class="im" style="background-image:url('${p.img}')">${p.cuotas>1?`<span class="tag">${p.cuotas} cuotas</span>`:''}<button class="heart" onclick="event.stopPropagation();tf(${p.id})">${fav.includes(p.id)?'💖':'🤍'}</button></div><div class="info"><b>${esc(p.name)}</b><span class="price">${fmt(p.price)}</span></div></div>`).join('')||'<div class="empty">No hay productos todavía ✨</div>';
- const c=S.cfg,ph=(c.whats||c.phone).replace(/\D/g,'');
- $('ct').innerHTML=[c.phone&&`<a class="glass" href="tel:${c.phone}">📞 ${esc(c.phone)}</a>`,ph&&`<a class="glass" href="https://wa.me/${ph}">💬 WhatsApp</a>`,c.insta&&`<a class="glass" href="${lk(c.insta,'instagram.com/')}" target="_blank">📸 Instagram</a>`,c.fb&&`<a class="glass" href="${lk(c.fb,'facebook.com/')}" target="_blank">👍 Facebook</a>`,c.tiktok&&`<a class="glass" href="${lk(c.tiktok,'tiktok.com/@')}" target="_blank">🎵 TikTok</a>`].filter(Boolean).join('');
- $('cb').textContent=cart.reduce((s,i)=>s+i.q,0)}
-const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-const lk=(v,b)=>/^https?:/.test(v)?v:'https://'+b+v.replace('@','');
-function tf(id){fav=fav.includes(id)?fav.filter(x=>x!==id):[...fav,id];save();render()}
-function showOv(h){$('sh').innerHTML=h;$('ov').classList.add('show');document.body.style.overflow='hidden'}
-function closeOv(){$('ov').classList.remove('show');document.body.style.overflow=''}
-function acc(el){el.parentElement.classList.toggle('open')}
-function openP(id){const p=S.prods.find(x=>x.id===id),c=S.cfg,n=Math.min(p.cuotas||1,c.maxCuotas||99);
- showOv(`<div class="hero" style="background-image:url('${p.img}')"></div><div class="pad"><span class="price" style="font-size:28px">${fmt(p.price)}</span>${n>1?`<div class="cuo">o ${n} cuotas de ${fmt(Math.ceil(p.price/n))}</div>`:''}<h2 style="margin:6px 0">${esc(p.name)}</h2><p style="color:var(--mut);line-height:1.5">${esc(p.desc)}</p><div class="cuo">${p.stock>0?'Stock: '+p.stock:'Sin stock'}</div>
- <button class="btn" onclick="add(${p.id})">Agregar al carrito</button>
- <div class="acc glass"><button onclick="acc(this)">💳 Métodos de pago <span class="arrow">⌄</span></button><div class="body">
- ${c.card?`<div class="pm" onclick="pay('tarjeta',${p.id})">💳 <div><b>Tarjeta</b><div class="cuo">Crédito o débito${n>1?' · hasta '+n+' cuotas':''}</div></div></div>`:''}
- ${c.mp?`<div class="pm" onclick="pay('mp',${p.id})">🟦 <div><b>Mercado Pago</b><div class="cuo">Paga con tu cuenta o tarjeta</div></div></div>`:''}
- ${!c.card&&!c.mp?'<div class="cuo">Consultá métodos por contacto.</div>':''}</div></div></div>`)}
-function add(id){const i=cart.find(x=>x.id===id);i?i.q++:cart.push({id,q:1});save();render();$('cb').classList.remove('pop');void $('cb').offsetWidth;$('cb').classList.add('pop');toast('Agregado al carrito ✨')}
-function pay(m,id){const p=S.prods.find(x=>x.id===id);
- if(m==='mp'&&S.cfg.mpLink)return window.open(S.cfg.mpLink,'_blank');
- wa(`Hola! Quiero comprar: ${p.name} (${fmt(p.price)}) con ${m==='mp'?'Mercado Pago':'tarjeta'}.`)}
-function wa(t){const ph=(S.cfg.whats||S.cfg.phone).replace(/\D/g,'');if(!ph)return toast('El vendedor aún no configuró contacto');window.open(`https://wa.me/${ph}?text=${encodeURIComponent(t)}`,'_blank')}
-function openCart(){const it=cart.map(c=>({...S.prods.find(p=>p.id===c.id),q:c.q})).filter(x=>x.id),t=it.reduce((s,i)=>s+i.price*i.q,0);
- showOv(`<div class="pad"><h2 style="margin-top:0">Tu carrito</h2>${it.map(i=>`<div class="row"><span>${esc(i.name)} × ${i.q}</span><span><b>${fmt(i.price*i.q)}</b> <button class="sm" onclick="rm(${i.id})">✕</button></span></div>`).join('')||'<div class="empty">Vacío</div>'}
- ${it.length?`<div class="row"><b>Total</b><span class="price">${fmt(t)}</span></div><button class="btn" onclick="wa('Hola! Quiero comprar:\\n'+cart.map(c=>{const p=S.prods.find(x=>x.id===c.id);return '• '+p.name+' ×'+c.q}).join('\\n')+'\\nTotal: ${fmt(t)}')">Finalizar por WhatsApp</button>`:''}</div>`)}
-function rm(id){cart=cart.filter(c=>c.id!==id);save();render();openCart()}
-/* ---------- ADMIN ---------- */
-function adminLogin(){if(isAdm)return adminPanel();const p=prompt('Contraseña de administrador:');if(p===null)return;if(p===S.cfg.pass){isAdm=true;adminPanel()}else toast('Contraseña incorrecta')}
-function adminPanel(){const c=S.cfg;
- showOv(`<div class="pad adm"><h2 style="margin-top:0">Panel admin</h2>
- <button class="btn" onclick="editP()">+ Nuevo producto</button>
- ${S.prods.map(p=>`<div class="it"><img src="${p.img}"><div style="flex:1"><b>${esc(p.name)}</b><div class="cuo">${fmt(p.price)} · ${p.cuotas} cuotas</div></div><button class="sm" onclick="editP(${p.id})">Editar</button><button class="sm" onclick="delP(${p.id})">🗑</button></div>`).join('')}
- <div class="acc glass"><button onclick="acc(this)">🏪 Tienda, contacto y pagos <span class="arrow">⌄</span></button><div class="body">
- <label>Nombre de la tienda</label><input id="c_name" value="${esc(c.name)}">
- <label>Teléfono</label><input id="c_phone" value="${esc(c.phone)}" placeholder="+54 9 11 1234 5678">
- <label>WhatsApp (con código de país)</label><input id="c_whats" value="${esc(c.whats)}">
- <label>Instagram (usuario o link)</label><input id="c_insta" value="${esc(c.insta)}">
- <label>Facebook</label><input id="c_fb" value="${esc(c.fb)}">
- <label>TikTok</label><input id="c_tiktok" value="${esc(c.tiktok)}">
- <label>Símbolo de moneda</label><input id="c_cur" value="${esc(c.cur)}">
- <label>Máximo de cuotas global</label><input id="c_max" type="number" value="${c.maxCuotas}">
- <label>Link de Mercado Pago (opcional)</label><input id="c_mpl" value="${esc(c.mpLink)}" placeholder="https://mpago.la/...">
- <div class="row"><span>Pago con tarjeta</span><input type="checkbox" id="c_card" style="width:auto" ${c.card?'checked':''}></div>
- <div class="row"><span>Mercado Pago</span><input type="checkbox" id="c_mp" style="width:auto" ${c.mp?'checked':''}></div>
- <label>Nueva contraseña admin</label><input id="c_pass" value="${esc(c.pass)}">
- <button class="btn" onclick="saveCfg()">Guardar ajustes</button></div></div>
- <div class="row" style="margin-top:14px"><button class="sm" onclick="expo()">⬇ Exportar</button><button class="sm" onclick="$('imp').click()">⬆ Importar</button><button class="sm" onclick="isAdm=false;closeOv();toast('Sesión cerrada')">Salir</button></div>
- <input type="file" id="imp" accept=".json" hidden onchange="impo(this)"></div>`)}
-function saveCfg(){const g=i=>$(i).value.trim();Object.assign(S.cfg,{name:g('c_name')||'Mi Tienda',phone:g('c_phone'),whats:g('c_whats'),insta:g('c_insta'),fb:g('c_fb'),tiktok:g('c_tiktok'),cur:g('c_cur')||'$',maxCuotas:+g('c_max')||1,mpLink:g('c_mpl'),card:$('c_card').checked,mp:$('c_mp').checked,pass:g('c_pass')||'1234'});save();render();toast('Ajustes guardados ✅')}
-let tmpImg='';
-function editP(id){const p=S.prods.find(x=>x.id===id)||{name:'',price:'',cat:'',desc:'',cuotas:1,stock:1,img:''};tmpImg=p.img;
- showOv(`<div class="pad"><h2 style="margin-top:0">${id?'Editar':'Nuevo'} producto</h2>
- <label>Foto</label><input type="file" accept="image/*" onchange="pimg(this)"><img id="pv" src="${p.img}" style="width:90px;border-radius:14px;margin-top:8px;${p.img?'':'display:none'}">
- <label>Nombre</label><input id="p_n" value="${esc(p.name)}"><label>Precio</label><input id="p_p" type="number" value="${p.price}">
- <label>Categoría</label><input id="p_c" value="${esc(p.cat)}"><label>Descripción</label><textarea id="p_d" rows="3">${esc(p.desc)}</textarea>
- <label>Cuotas disponibles</label><input id="p_q" type="number" min="1" value="${p.cuotas}"><label>Stock</label><input id="p_s" type="number" value="${p.stock}">
- <button class="btn" style="margin-top:14px" onclick="saveP(${id||0})">Guardar</button><button class="btn sec" style="margin-top:8px" onclick="adminPanel()">Cancelar</button></div>`)}
-function pimg(i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const s=Math.min(1,700/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);tmpImg=c.toDataURL('image/jpeg',.78);$('pv').src=tmpImg;$('pv').style.display='block'};im.src=r.result};r.readAsDataURL(f)}
-function saveP(id){const n=$('p_n').value.trim();if(!n||!$('p_p').value)return toast('Falta nombre o precio');
- const o={name:n,price:+$('p_p').value,cat:$('p_c').value.trim(),desc:$('p_d').value.trim(),cuotas:+$('p_q').value||1,stock:+$('p_s').value||0,img:tmpImg||svg('#ff5fa2','#8b5cf6','✨')};
- if(id)Object.assign(S.prods.find(x=>x.id===id),o);else S.prods.push({id:Date.now(),...o});save();render();adminPanel();toast('Producto guardado ✅')}
-function delP(id){if(confirm('¿Eliminar producto?')){S.prods=S.prods.filter(p=>p.id!==id);save();render();adminPanel()}}
-function expo(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='tienda-respaldo.json';a.click()}
-function impo(i){const r=new FileReader();r.onload=()=>{try{S=JSON.parse(r.result);save();render();adminPanel();toast('Importado ✅')}catch{toast('Archivo inválido')}};r.readAsText(i.files[0])}
+/* ==========================================================================
+   VECTOR SVG ICON SYSTEM
+   ========================================================================== */
+const ICONS = {
+  cart: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`,
+  heart: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  heartFilled: `<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  search: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+  gear: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
+  sun: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`,
+  moon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
+  star: `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  starEmpty: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  close: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
+  trash: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
+  edit: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`,
+  plus: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
+  minus: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
+  check: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+  truck: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+  tag: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>`,
+  home: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  package: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
+  phone: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+  whatsapp: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
+  instagram: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+  facebook: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
+  tiktok: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>`,
+  creditCard: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`,
+  copy: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`,
+  share: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`,
+  store: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`
+};
+
+/* SVG Vector Illustration Generator for Products */
+function svgIllustration(colorA, colorB, type) {
+  let inner = `<circle cx="200" cy="200" r="80" fill="white" opacity="0.2"/>`;
+  if(type==='audio') inner += `<path d="M120 220 v-40 a80 80 0 0 1 160 0 v40" stroke="white" stroke-width="20" fill="none" stroke-linecap="round"/><rect x="100" y="190" width="40" height="70" rx="20" fill="white"/><rect x="260" y="190" width="40" height="70" rx="20" fill="white"/>`;
+  else if(type==='watch') inner += `<rect x="160" y="60" width="80" height="280" rx="20" fill="white" opacity="0.3"/><rect x="140" y="130" width="120" height="140" rx="30" fill="white"/><circle cx="200" cy="200" r="45" fill="${colorA}"/><line x1="200" y1="200" x2="200" y2="175" stroke="white" stroke-width="8" stroke-linecap="round"/><line x1="200" y1="200" x2="220" y2="200" stroke="white" stroke-width="8" stroke-linecap="round"/>`;
+  else if(type==='lamp') inner += `<path d="M140 180 a60 60 0 0 1 120 0 Z" fill="white"/><rect x="190" y="180" width="20" height="110" fill="white"/><rect x="150" y="290" width="100" height="16" rx="8" fill="white"/><circle cx="200" cy="130" r="25" fill="#fef08a"/>`;
+  else if(type==='phone') inner += `<rect x="130" y="80" width="140" height="240" rx="24" fill="white"/><rect x="142" y="96" width="116" height="208" rx="16" fill="${colorB}"/><circle cx="200" cy="285" r="8" fill="white"/>`;
+  else inner += `<path d="M130 150 L270 150 L250 270 L150 270 Z" fill="white"/><circle cx="200" cy="150" r="30" fill="#fef08a"/>`;
+
+  const svgStr = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${colorA}"/><stop offset="100%" stop-color="${colorB}"/></linearGradient></defs><rect width="400" height="400" fill="url(#g)"/>${inner}</svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svgStr);
+}
+
+/* ==========================================================================
+   STATE & DATA ARCHITECTURE
+   ========================================================================== */
+const K = 'prostore_v2';
+const dflt = {
+  theme: 'light',
+  cfg: {
+    name: 'ProStore Digital',
+    phone: '+5491123456789',
+    whats: '+5491123456789',
+    insta: 'prostore.oficial',
+    fb: 'prostore.ok',
+    tiktok: 'prostore.app',
+    cur: '$',
+    maxCuotas: 12,
+    cbu: '0000003100012345678901',
+    alias: 'PROSTORE.TIENDA.MP',
+    mpLink: '',
+    pass: '1234',
+    freeShipMin: 50000
+  },
+  coupons: [
+    { code: 'PROMO10', discount: 10, type: 'percent', active: true },
+    { code: 'DESCUENTO5000', discount: 5000, type: 'fixed', active: true }
+  ],
+  orders: [],
+  prods: [
+    {
+      id: 1,
+      name: 'Auriculares Glass Spatial Sound',
+      price: 59990,
+      cat: 'Audio',
+      desc: 'Cancelación activa de ruido, transmisión Hi-Fi sin pérdida y hasta 35 horas de autonomía ininterrumpida.',
+      cuotas: 6,
+      stock: 12,
+      tag: 'Más Vendido',
+      img: svgIllustration('#ec4899', '#8b5cf6', 'audio'),
+      rating: 4.9,
+      reviews: [
+        { name: 'Lucas G.', rating: 5, comment: 'La calidad de audio es impresionante y la batería dura días.' }
+      ]
+    },
+    {
+      id: 2,
+      name: 'Smartwatch Aura Fit Ultra',
+      price: 89990,
+      cat: 'Relojes',
+      desc: 'Pantalla AMOLED 1.9", cuerpo de titanio, sensores biométricos de alta precisión y resistencia al agua 50m.',
+      cuotas: 12,
+      stock: 8,
+      tag: 'Nuevo',
+      img: svgIllustration('#8b5cf6', '#3b82f6', 'watch'),
+      rating: 4.8,
+      reviews: [
+        { name: 'Valeria M.', rating: 5, comment: 'Súper fluido y la pantalla se ve increíble bajo el sol.' }
+      ]
+    },
+    {
+      id: 3,
+      name: 'Lámpara Orb Mood RGB',
+      price: 24990,
+      cat: 'Hogar',
+      desc: 'Iluminación ambiental inteligente con 16 millones de colores, control por voz y sincronización con música.',
+      cuotas: 3,
+      stock: 15,
+      tag: 'Oferta',
+      img: svgIllustration('#f43f5e', '#f59e0b', 'lamp'),
+      rating: 4.7,
+      reviews: []
+    },
+    {
+      id: 4,
+      name: 'Smartphone Nova Glass Pro',
+      price: 299990,
+      cat: 'Celulares',
+      desc: 'Procesador de última generación, cámara triple de 108MP con OIS y carga ultrarrápida de 67W.',
+      cuotas: 12,
+      stock: 5,
+      tag: 'Destacado',
+      img: svgIllustration('#10b981', '#3b82f6', 'phone'),
+      rating: 5.0,
+      reviews: []
+    }
+  ]
+};
+
+let S = JSON.parse(localStorage.getItem(K) || 'null') || dflt;
+let cart = JSON.parse(localStorage.getItem(K + '_cart') || '[]');
+let fav = JSON.parse(localStorage.getItem(K + '_fav') || '[]');
+let currentCat = 'Todos';
+let isAdm = false;
+let activeCoupon = null;
+
+// Deep sync fallback
+S.cfg = { ...dflt.cfg, ...(S.cfg || {}) };
+if(!S.coupons) S.coupons = dflt.coupons;
+if(!S.orders) S.orders = [];
+
+const $ = id => document.getElementById(id);
+const save = () => {
+  try {
+    localStorage.setItem(K, JSON.stringify(S));
+    localStorage.setItem(K + '_cart', JSON.stringify(cart));
+    localStorage.setItem(K + '_fav', JSON.stringify(fav));
+  } catch(e) {
+    toast('Error guardando en almacenamiento local.');
+  }
+};
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const fmt = n => S.cfg.cur + ' ' + Number(n).toLocaleString('es-AR');
+
+function toast(msg) {
+  const t = $('tt');
+  t.innerHTML = `<span>${msg}</span>`;
+  t.classList.add('show');
+  clearTimeout(t.timer);
+  t.timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+function toggleTheme() {
+  S.theme = S.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', S.theme);
+  save();
+  renderThemeBtn();
+}
+
+function renderThemeBtn() {
+  $('themeBtn').innerHTML = S.theme === 'dark' ? ICONS.sun : ICONS.moon;
+}
+
+function initIcons() {
+  $('headerLogo').innerHTML = ICONS.store;
+  $('cartIconContainer').innerHTML = ICONS.cart;
+  $('adminHeaderBtn').innerHTML = ICONS.gear;
+  $('searchIcon').innerHTML = ICONS.search;
+  $('iconNavHome').innerHTML = ICONS.home;
+  $('iconNavFavs').innerHTML = ICONS.heart;
+  $('iconNavOrders').innerHTML = ICONS.package;
+  $('iconNavAdmin').innerHTML = ICONS.gear;
+  renderThemeBtn();
+  document.documentElement.setAttribute('data-theme', S.theme || 'light');
+}
+
+/* ==========================================================================
+   RENDER & VIEW CONTROLLERS
+   ========================================================================== */
+function navigateTo(page) {
+  document.querySelectorAll('.bnav-btn').forEach(b => b.classList.remove('active'));
+  if(page === 'home') {
+    $('navHome').classList.add('active');
+    currentCat = 'Todos';
+    render();
+  } else if(page === 'favs') {
+    $('navFavs').classList.add('active');
+    currentCat = '❤️ Favoritos';
+    render();
+  }
+}
+
+function render() {
+  $('sn').textContent = S.cfg.name;
+  document.title = S.cfg.name;
+
+  // Categories
+  const cats = ['Todos', '❤️ Favoritos', ...new Set(S.prods.map(p => p.cat).filter(Boolean))];
+  $('chips').innerHTML = cats.map(c => `
+    <button class="chip ${c === currentCat ? 'on' : ''}" onclick="currentCat='${c}'; render()">
+      ${c === '❤️ Favoritos' ? ICONS.heartFilled : ''} ${esc(c)}
+    </button>
+  `).join('');
+
+  // Filter & Search
+  const query = $('q').value.toLowerCase().trim();
+  let list = S.prods.filter(p => {
+    const matchCat = (currentCat === 'Todos') || (currentCat === '❤️ Favoritos' ? fav.includes(p.id) : p.cat === currentCat);
+    const matchSearch = p.name.toLowerCase().includes(query) || (p.desc && p.desc.toLowerCase().includes(query));
+    return matchCat && matchSearch;
+  });
+
+  // Sort
+  const ord = $('ord').value;
+  if(ord === 'a') list.sort((a, b) => a.price - b.price);
+  if(ord === 'd') list.sort((a, b) => b.price - a.price);
+  if(ord === 'r') list.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+
+  // Render Grid
+  const grid = $('grid');
+  if(list.length === 0) {
+    grid.innerHTML = `<div class="empty" style="grid-column: 1/-1;">No se encontraron productos en esta categoría ✨</div>`;
+  } else {
+    grid.innerHTML = list.map(p => {
+      const isFav = fav.includes(p.id);
+      return `
+        <div class="card glass" onclick="openP(${p.id})">
+          <div class="im" style="background-image: url('${p.img}')">
+            ${p.tag ? `<span class="tag">${esc(p.tag)}</span>` : ''}
+            <button class="heart ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFav(${p.id})">
+              ${isFav ? ICONS.heartFilled : ICONS.heart}
+            </button>
+          </div>
+          <div class="info">
+            <span class="cat-tag">${esc(p.cat || 'General')}</span>
+            <b>${esc(p.name)}</b>
+            <div class="rating-row">
+              ${ICONS.star} <span>${p.rating || 5.0} (${(p.reviews || []).length})</span>
+            </div>
+            <div class="price-row">
+              <span class="price">${fmt(p.price)}</span>
+              <button class="ib" style="width:34px; height:34px;" onclick="event.stopPropagation(); addCart(${p.id})">
+                ${ICONS.plus}
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Footer Contact
+  const c = S.cfg;
+  const ph = (c.whats || c.phone).replace(/\D/g, '');
+  $('ct').innerHTML = [
+    c.phone && `<a class="btn sec sm" href="tel:${c.phone}">${ICONS.phone} Llama</a>`,
+    ph && `<a class="btn sec sm" href="https://wa.me/${ph}" target="_blank">${ICONS.whatsapp} WhatsApp</a>`,
+    c.insta && `<a class="btn sec sm" href="https://instagram.com/${c.insta.replace('@','')}" target="_blank">${ICONS.instagram} Instagram</a>`,
+    c.fb && `<a class="btn sec sm" href="https://facebook.com/${c.fb}" target="_blank">${ICONS.facebook} Facebook</a>`
+  ].filter(Boolean).join('');
+
+  // Cart Badge
+  const count = cart.reduce((s, i) => s + i.q, 0);
+  const cb = $('cb');
+  cb.textContent = count;
+}
+
+function toggleFav(id) {
+  fav = fav.includes(id) ? fav.filter(x => x !== id) : [...fav, id];
+  save();
+  render();
+  toast(fav.includes(id) ? 'Añadido a favoritos ❤️' : 'Eliminado de favoritos');
+}
+
+/* ==========================================================================
+   PRODUCT DETAIL MODAL
+   ========================================================================== */
+function openP(id) {
+  const p = S.prods.find(x => x.id === id);
+  if(!p) return;
+  const c = S.cfg;
+  const cuotas = Math.min(p.cuotas || 1, c.maxCuotas || 12);
+  const isFav = fav.includes(p.id);
+
+  showOv(`
+    <div class="sheet-header">
+      <h3 class="sheet-title">${esc(p.name)}</h3>
+      <button class="ib" onclick="closeOv()">${ICONS.close}</button>
+    </div>
+    <div class="im" style="width:100%; aspect-ratio:1.2; background: var(--bg-card) url('${p.img}') center/contain no-repeat;"></div>
+    <div class="pad">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <span class="price" style="font-size:26px;">${fmt(p.price)}</span>
+          ${cuotas > 1 ? `<div style="font-size:13px; color:var(--tx-mut);">o ${cuotas} cuotas sin interés de ${fmt(Math.ceil(p.price / cuotas))}</div>` : ''}
+        </div>
+        <button class="heart ${isFav ? 'active' : ''}" style="position:static;" onclick="toggleFav(${p.id}); openP(${p.id})">
+          ${isFav ? ICONS.heartFilled : ICONS.heart}
+        </button>
+      </div>
+
+      <div style="margin:14px 0; color:var(--tx-mut); font-size:14px; line-height:1.6;">${esc(p.desc)}</div>
+
+      <div style="display:flex; gap:12px; align-items:center; margin-bottom:16px;">
+        <span style="font-size:13px; font-weight:600; padding:4px 10px; border-radius:12px; background:${p.stock > 0 ? 'rgba(16,185,129,0.15)' : 'rgba(239,68,68,0.15)'}; color:${p.stock > 0 ? 'var(--success)' : 'var(--danger)'}">
+          ${p.stock > 0 ? `Stock Disponible: ${p.stock} un.` : 'Agotado'}
+        </span>
+        <button class="btn sec sm" onclick="shareProd('${esc(p.name)}')">${ICONS.share} Compartir</button>
+      </div>
+
+      <button class="btn" onclick="addCart(${p.id}); closeOv();">${ICONS.cart} Agregar al Carrito</button>
+
+      <!-- Customer Reviews Section -->
+      <div style="margin-top:24px; border-top: 1px solid var(--border); padding-top:16px;">
+        <h4 style="margin:0 0 12px; font-size:16px;">Opiniones de Clientes (${(p.reviews||[]).length})</h4>
+        ${(p.reviews || []).map(r => `
+          <div style="background:var(--bg-card); padding:10px 14px; border-radius:var(--radius-sm); margin-bottom:8px; border:1px solid var(--border)">
+            <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700;">
+              <span>${esc(r.name)}</span>
+              <span style="color:var(--warning)">${'★'.repeat(r.rating)}</span>
+            </div>
+            <p style="margin:4px 0 0; font-size:13px; color:var(--tx-mut);">${esc(r.comment)}</p>
+          </div>
+        `).join('') || '<div style="font-size:13px; color:var(--tx-mut);">Sé el primero en dejar una opinión.</div>'}
+
+        <div class="acc glass" style="margin-top:12px;">
+          <button onclick="acc(this)">Dejar una opinión ${ICONS.edit}</button>
+          <div class="body">
+            <label>Tu nombre</label>
+            <input id="rev_name" placeholder="Ej: María P.">
+            <label>Puntuación (1 a 5 stars)</label>
+            <select id="rev_stars">
+              <option value="5">5 ⭐ - Excelente</option>
+              <option value="4">4 ⭐ - Muy bueno</option>
+              <option value="3">3 ⭐ - Regular</option>
+            </select>
+            <label>Comentario</label>
+            <textarea id="rev_comm" rows="2" placeholder="¿Qué te pareció el producto?"></textarea>
+            <button class="btn sm" style="margin-top:10px;" onclick="addReview(${p.id})">Publicar opinión</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `);
+}
+
+function shareProd(title) {
+  if (navigator.share) {
+    navigator.share({ title: title, url: window.location.href });
+  } else {
+    navigator.clipboard.writeText(window.location.href);
+    toast('Enlace copiado al portapapeles');
+  }
+}
+
+function addReview(id) {
+  const p = S.prods.find(x => x.id === id);
+  const name = $('rev_name').value.trim();
+  const comm = $('rev_comm').value.trim();
+  const rating = +$('rev_stars').value;
+
+  if(!name || !comm) return toast('Completa nombre y comentario');
+  if(!p.reviews) p.reviews = [];
+  p.reviews.push({ name, rating, comment: comm });
+
+  // Recalculate rating
+  p.rating = +(p.reviews.reduce((s, r) => s + r.rating, 0) / p.reviews.length).toFixed(1);
+  save();
+  render();
+  openP(id);
+  toast('¡Gracias por tu opinión!');
+}
+
+/* ==========================================================================
+   CART ENGINE & COUPONS
+   ========================================================================== */
+function addCart(id) {
+  const p = S.prods.find(x => x.id === id);
+  if(!p || p.stock <= 0) return toast('Producto sin stock disponible');
+
+  const item = cart.find(x => x.id === id);
+  if(item) {
+    if(item.q >= p.stock) return toast('Alcanzaste el límite de stock');
+    item.q++;
+  } else {
+    cart.push({ id, q: 1 });
+  }
+
+  save();
+  render();
+  const cb = $('cb');
+  cb.classList.remove('pop');
+  void cb.offsetWidth;
+  cb.classList.add('pop');
+  toast('Agregado al carrito 🛍️');
+}
+
+function updateCartQty(id, delta) {
+  const item = cart.find(x => x.id === id);
+  if(!item) return;
+  const p = S.prods.find(x => x.id === id);
+
+  item.q += delta;
+  if(item.q <= 0) {
+    cart = cart.filter(x => x.id !== id);
+  } else if(p && item.q > p.stock) {
+    item.q = p.stock;
+    toast('Stock máximo alcanzado');
+  }
+  save();
+  render();
+  openCart();
+}
+
+function openCart() {
+  const items = cart.map(c => ({ ...S.prods.find(p => p.id === c.id), q: c.q })).filter(x => x.id);
+  const subtotal = items.reduce((s, i) => s + i.price * i.q, 0);
+
+  let discount = 0;
+  if(activeCoupon) {
+    if(activeCoupon.type === 'percent') discount = (subtotal * activeCoupon.discount) / 100;
+    else discount = activeCoupon.discount;
+  }
+  const total = Math.max(0, subtotal - discount);
+  const freeShipMin = S.cfg.freeShipMin || 50000;
+  const progressPercent = Math.min(100, (subtotal / freeShipMin) * 100);
+
+  showOv(`
+    <div class="sheet-header">
+      <h3 class="sheet-title">Tu Carrito (${items.reduce((s,i)=>s+i.q,0)})</h3>
+      <button class="ib" onclick="closeOv()">${ICONS.close}</button>
+    </div>
+    <div class="pad">
+      <!-- Free Shipping Indicator -->
+      <div style="background:var(--g-subtle); padding:12px; border-radius:var(--radius-md); margin-bottom:16px;">
+        <div style="font-size:12px; font-weight:700; display:flex; justify-content:space-between; margin-bottom:6px;">
+          <span>${subtotal >= freeShipMin ? '🎉 ¡Envío gratis alcanzado!' : `Te faltan ${fmt(freeShipMin - subtotal)} para envío gratis`}</span>
+          <span>${Math.round(progressPercent)}%</span>
+        </div>
+        <div style="height:6px; background:var(--border); border-radius:3px; overflow:hidden;">
+          <div style="width:${progressPercent}%; height:100%; background:var(--g); transition:width 0.3s;"></div>
+        </div>
+      </div>
+
+      <!-- Items List -->
+      ${items.map(i => `
+        <div class="row">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:48px; height:48px; border-radius:var(--radius-sm); background:url('${i.img}') center/cover; flex-shrink:0;"></div>
+            <div>
+              <div style="font-weight:700; font-size:14px;">${esc(i.name)}</div>
+              <div style="font-size:13px; color:var(--tx-mut);">${fmt(i.price)}</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <button class="ib" style="width:28px; height:28px;" onclick="updateCartQty(${i.id}, -1)">${ICONS.minus}</button>
+            <span style="font-weight:700; font-size:14px; min-width:18px; text-align:center;">${i.q}</span>
+            <button class="ib" style="width:28px; height:28px;" onclick="updateCartQty(${i.id}, 1)">${ICONS.plus}</button>
+          </div>
+        </div>
+      `).join('') || '<div class="empty">Tu carrito está vacío</div>'}
+
+      ${items.length ? `
+        <!-- Coupon Section -->
+        <div style="display:flex; gap:8px; margin:16px 0;">
+          <input id="cp_code" placeholder="Código de cupón (ej: PROMO10)" style="text-transform:uppercase;">
+          <button class="btn sec sm" onclick="applyCoupon()">Aplicar</button>
+        </div>
+        ${activeCoupon ? `
+          <div style="font-size:12px; color:var(--success); font-weight:700; margin-bottom:12px; display:flex; justify-content:space-between;">
+            <span>Cupón ${activeCoupon.code} aplicado</span>
+            <span style="cursor:pointer;" onclick="activeCoupon=null; openCart();">Quitar ✕</span>
+          </div>
+        ` : ''}
+
+        <div style="border-top:1px dashed var(--border); padding-top:12px; margin-top:12px;">
+          <div class="row"><span>Subtotal</span><span>${fmt(subtotal)}</span></div>
+          ${discount > 0 ? `<div class="row" style="color:var(--success)"><span>Descuento</span><span>-${fmt(discount)}</span></div>` : ''}
+          <div class="row" style="font-size:18px; font-weight:800;">
+            <span>Total</span>
+            <span class="price">${fmt(total)}</span>
+          </div>
+        </div>
+
+        <button class="btn" style="margin-top:16px;" onclick="openCheckout()">${ICONS.truck} Iniciar Checkout</button>
+      ` : ''}
+    </div>
+  `);
+}
+
+function applyCoupon() {
+  const code = $('cp_code').value.trim().toUpperCase();
+  const found = S.coupons.find(c => c.code === code && c.active);
+  if(found) {
+    activeCoupon = found;
+    toast(`Cupón ${code} aplicado exitosamente! 🎉`);
+    openCart();
+  } else {
+    toast('Cupón inválido o expirado');
+  }
+}
+
+/* ==========================================================================
+   CHECKOUT ENGINE & PAYMENT OPTIONS
+   ========================================================================== */
+function openCheckout() {
+  const items = cart.map(c => ({ ...S.prods.find(p => p.id === c.id), q: c.q })).filter(x => x.id);
+  const subtotal = items.reduce((s, i) => s + i.price * i.q, 0);
+  let discount = 0;
+  if(activeCoupon) {
+    discount = activeCoupon.type === 'percent' ? (subtotal * activeCoupon.discount) / 100 : activeCoupon.discount;
+  }
+  const total = Math.max(0, subtotal - discount);
+
+  showOv(`
+    <div class="sheet-header">
+      <h3 class="sheet-title">Finalizar Compra</h3>
+      <button class="ib" onclick="closeOv()">${ICONS.close}</button>
+    </div>
+    <div class="pad">
+      <h4 style="margin:0 0 10px;">1. Datos del Comprador</h4>
+      <label>Nombre y Apellido</label>
+      <input id="chk_name" placeholder="Ej: Juan Pérez">
+      <label>Teléfono WhatsApp</label>
+      <input id="chk_phone" placeholder="Ej: 1112345678">
+      <label>Dirección de Envío</label>
+      <input id="chk_addr" placeholder="Ej: Av. Corrientes 1234, CABA">
+
+      <h4 style="margin:16px 0 10px;">2. Método de Pago</h4>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <button class="btn sec" onclick="processCheckout('whatsapp', ${total})">
+          ${ICONS.whatsapp} Enviar Pedido por WhatsApp
+        </button>
+        <button class="btn sec" onclick="processCheckout('transfer', ${total})">
+          ${ICONS.creditCard} Transferencia Bancaria / CBU
+        </button>
+        ${S.cfg.mpLink ? `
+          <button class="btn sec" onclick="processCheckout('mp', ${total})">
+            💳 Pagar con Mercado Pago
+          </button>
+        ` : ''}
+      </div>
+    </div>
+  `);
+}
+
+function processCheckout(method, total) {
+  const name = $('chk_name').value.trim();
+  const phone = $('chk_phone').value.trim();
+  const addr = $('chk_addr').value.trim();
+
+  if(!name || !phone) return toast('Por favor completa nombre y teléfono');
+
+  const items = cart.map(c => ({ ...S.prods.find(p => p.id === c.id), q: c.q }));
+  const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+  const orderData = {
+    id: orderId,
+    date: new Date().toLocaleDateString('es-AR') + ' ' + new Date().toLocaleTimeString('es-AR', {hour:'2-digit', minute:'2-digit'}),
+    customer: { name, phone, addr },
+    items,
+    total,
+    status: 'Pendiente',
+    method
+  };
+
+  // Deduct stock
+  items.forEach(it => {
+    const p = S.prods.find(x => x.id === it.id);
+    if(p) p.stock = Math.max(0, p.stock - it.q);
+  });
+
+  S.orders.unshift(orderData);
+  cart = [];
+  activeCoupon = null;
+  save();
+  render();
+
+  if(method === 'whatsapp') {
+    const text = `🛍️ *NUEVO PEDIDO DE TIENDA* (#${orderId})\n` +
+      `👤 *Cliente:* ${name}\n` +
+      `📞 *Teléfono:* ${phone}\n` +
+      `📍 *Dirección:* ${addr || 'Retiro en local'}\n\n` +
+      `📦 *Productos:*\n` + items.map(i => `• ${i.name} ×${i.q} (${fmt(i.price * i.q)})`).join('\n') + `\n\n` +
+      `💰 *Total a Pagar:* ${fmt(total)}`;
+
+    const ph = (S.cfg.whats || S.cfg.phone).replace(/\D/g, '');
+    window.open(`https://wa.me/${ph}?text=${encodeURIComponent(text)}`, '_blank');
+    showOrderSuccess(orderId, total);
+  } else if(method === 'transfer') {
+    showTransferModal(orderId, total);
+  } else if(method === 'mp') {
+    window.open(S.cfg.mpLink, '_blank');
+    showOrderSuccess(orderId, total);
+  }
+}
+
+function showTransferModal(orderId, total) {
+  showOv(`
+    <div class="sheet-header">
+      <h3 class="sheet-title">Datos para Transferencia</h3>
+      <button class="ib" onclick="closeOv()">${ICONS.close}</button>
+    </div>
+    <div class="pad">
+      <div style="text-align:center; margin-bottom:16px;">
+        <span style="font-size:13px; color:var(--tx-mut);">Número de Orden</span>
+        <div style="font-size:20px; font-weight:800; color:var(--pu);">${orderId}</div>
+        <div style="font-size:24px; font-weight:800; margin-top:6px;" class="price">${fmt(total)}</div>
+      </div>
+
+      <div style="background:var(--bg-card); border:1px solid var(--border); padding:14px; border-radius:var(--radius-md); font-size:14px;">
+        <div class="row">
+          <span>CBU:</span>
+          <b id="cbuTxt">${S.cfg.cbu}</b>
+          <button class="btn sec sm" onclick="copyTxt('${S.cfg.cbu}')">${ICONS.copy}</button>
+        </div>
+        <div class="row">
+          <span>Alias:</span>
+          <b id="aliasTxt">${S.cfg.alias}</b>
+          <button class="btn sec sm" onclick="copyTxt('${S.cfg.alias}')">${ICONS.copy}</button>
+        </div>
+      </div>
+
+      <p style="font-size:13px; color:var(--tx-mut); margin-top:14px; text-align:center;">
+        Realizá la transferencia y envía el comprobante por WhatsApp adjuntando el código de orden.
+      </p>
+
+      <button class="btn" onclick="closeOv(); toast('¡Gracias por tu compra!');">${ICONS.check} Entendido</button>
+    </div>
+  `);
+}
+
+function showOrderSuccess(orderId, total) {
+  showOv(`
+    <div class="pad" style="text-align:center; padding:30px 20px;">
+      <div style="width:64px; height:64px; border-radius:50%; background:rgba(16,185,129,0.15); color:var(--success); display:grid; place-items:center; margin:0 auto 16px;">
+        ${ICONS.check}
+      </div>
+      <h2 style="margin:0 0 8px;">¡Pedido Confirmado!</h2>
+      <p style="color:var(--tx-mut); margin:0 0 16px;">Tu orden <b>#${orderId}</b> ha sido registrada con éxito por un total de <b>${fmt(total)}</b>.</p>
+      <button class="btn" onclick="closeOv()">${ICONS.home} Volver a la Tienda</button>
+    </div>
+  `);
+}
+
+function copyTxt(text) {
+  navigator.clipboard.writeText(text);
+  toast('Copiado al portapapeles 📋');
+}
+
+/* ==========================================================================
+   CUSTOMER ORDER HISTORY & TRACKER
+   ========================================================================== */
+function openOrderTracker() {
+  showOv(`
+    <div class="sheet-header">
+      <h3 class="sheet-title">Mis Pedidos Realizados</h3>
+      <button class="ib" onclick="closeOv()">${ICONS.close}</button>
+    </div>
+    <div class="pad">
+      ${S.orders.length === 0 ? '<div class="empty">Aún no has realizado pedidos en esta tienda.</div>' : ''}
+      ${S.orders.map(o => `
+        <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md); padding:14px; margin-bottom:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <div>
+              <b style="color:var(--pu); font-size:15px;">#${o.id}</b>
+              <div style="font-size:12px; color:var(--tx-mut);">${o.date}</div>
+            </div>
+            <span style="font-size:12px; font-weight:700; padding:4px 10px; border-radius:12px; background:rgba(139,92,246,0.15); color:var(--pu);">
+              ${o.status}
+            </span>
+          </div>
+          <div style="font-size:13px; color:var(--tx-mut); border-top:1px dashed var(--border); padding-top:8px;">
+            ${o.items.map(i => `<div>• ${esc(i.name)} ×${i.q}</div>`).join('')}
+          </div>
+          <div style="margin-top:8px; display:flex; justify-content:space-between; align-items:center; font-weight:800;">
+            <span>Total</span>
+            <span class="price">${fmt(o.total)}</span>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `);
+}
+
+/* ==========================================================================
+   ADMIN CONTROL PANEL & MANAGEMENT
+   ========================================================================== */
+function adminLogin() {
+  if(isAdm) return adminPanel();
+  const p = prompt('Contraseña de Administrador:');
+  if(p === null) return;
+  if(p === S.cfg.pass) {
+    isAdm = true;
+    adminPanel();
+    toast('Sesión de administración iniciada 🔓');
+  } else {
+    toast('Contraseña incorrecta');
+  }
+}
+
+function adminPanel() {
+  const c = S.cfg;
+  const totalSales = S.orders.reduce((s, o) => s + o.total, 0);
+  const lowStockCount = S.prods.filter(p => p.stock <= 2).length;
+
+  showOv(`
+    <div class="sheet-header">
+      <h3 class="sheet-title">Panel de Control Admin</h3>
+      <button class="ib" onclick="closeOv()">${ICONS.close}</button>
+    </div>
+    <div class="pad">
+      <!-- Admin Stats Dashboard -->
+      <div class="admin-grid">
+        <div class="stat-card">
+          <div class="val">${fmt(totalSales)}</div>
+          <div class="lbl">Ventas Totales</div>
+        </div>
+        <div class="stat-card">
+          <div class="val">${S.orders.length}</div>
+          <div class="lbl">Pedidos</div>
+        </div>
+        <div class="stat-card">
+          <div class="val">${S.prods.length}</div>
+          <div class="lbl">Productos</div>
+        </div>
+        <div class="stat-card">
+          <div class="val" style="color:${lowStockCount > 0 ? 'var(--danger)' : 'var(--success)'}">${lowStockCount}</div>
+          <div class="lbl">Bajo Stock</div>
+        </div>
+      </div>
+
+      <button class="btn" onclick="editP()">${ICONS.plus} Crear Nuevo Producto</button>
+
+      <!-- Products Management -->
+      <h4 style="margin:20px 0 10px;">Gestión de Productos (${S.prods.length})</h4>
+      <div style="max-height:260px; overflow-y:auto; border:1px solid var(--border); border-radius:var(--radius-md); padding:8px;">
+        ${S.prods.map(p => `
+          <div class="row" style="padding:8px 0;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div style="width:36px; height:36px; border-radius:var(--radius-sm); background:url('${p.img}') center/cover;"></div>
+              <div>
+                <b style="font-size:13px;">${esc(p.name)}</b>
+                <div style="font-size:12px; color:var(--tx-mut);">${fmt(p.price)} · Stock: ${p.stock}</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="ib" style="width:32px; height:32px;" onclick="editP(${p.id})">${ICONS.edit}</button>
+              <button class="ib" style="width:32px; height:32px; color:var(--danger);" onclick="delP(${p.id})">${ICONS.trash}</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- Settings Accordion -->
+      <div class="acc glass" style="margin-top:16px;">
+        <button onclick="acc(this)">⚙️ Configuración de Tienda y Pagos <span class="arrow">⌄</span></button>
+        <div class="body">
+          <label>Nombre de la Tienda</label>
+          <input id="c_name" value="${esc(c.name)}">
+          <label>Teléfono de Contacto</label>
+          <input id="c_phone" value="${esc(c.phone)}">
+          <label>WhatsApp Comercial</label>
+          <input id="c_whats" value="${esc(c.whats)}">
+          <label>Instagram Username</label>
+          <input id="c_insta" value="${esc(c.insta)}">
+          <label>Símbolo de Moneda</label>
+          <input id="c_cur" value="${esc(c.cur)}">
+          <label>CBU Bancario</label>
+          <input id="c_cbu" value="${esc(c.cbu)}">
+          <label>Alias CBU</label>
+          <input id="c_alias" value="${esc(c.alias)}">
+          <label>Link de Pago Mercado Pago (Opcional)</label>
+          <input id="c_mpl" value="${esc(c.mpLink)}">
+          <label>Contraseña de Administrador</label>
+          <input id="c_pass" value="${esc(c.pass)}">
+          <button class="btn" style="margin-top:14px;" onclick="saveCfg()">Guardar Ajustes</button>
+        </div>
+      </div>
+
+      <!-- Coupons Accordion -->
+      <div class="acc glass" style="margin-top:10px;">
+        <button onclick="acc(this)">🎟️ Gestión de Cupones de Descuento <span class="arrow">⌄</span></button>
+        <div class="body">
+          ${S.coupons.map((cp, idx) => `
+            <div class="row">
+              <div><b>${cp.code}</b> (${cp.type === 'percent' ? cp.discount + '%' : fmt(cp.discount)})</div>
+              <button class="btn danger sm" onclick="delCoupon(${idx})">Eliminar</button>
+            </div>
+          `).join('')}
+          <div style="border-top:1px dashed var(--border); margin-top:10px; padding-top:10px;">
+            <label>Nuevo Código</label>
+            <input id="cp_new_code" placeholder="Ej: VERANO2025">
+            <label>Monto o Porcentaje</label>
+            <input id="cp_new_val" type="number" placeholder="Ej: 15">
+            <label>Tipo de Descuento</label>
+            <select id="cp_new_type">
+              <option value="percent">Porcentaje (%)</option>
+              <option value="fixed">Monto Fijo ($)</option>
+            </select>
+            <button class="btn sm" style="margin-top:10px;" onclick="addCoupon()">Crear Cupón</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backup / Restore Section -->
+      <div style="display:flex; gap:8px; margin-top:20px;">
+        <button class="btn sec sm" style="flex:1;" onclick="expo()">⬇ Exportar JSON</button>
+        <button class="btn sec sm" style="flex:1;" onclick="$('imp').click()">⬆ Importar JSON</button>
+        <button class="btn danger sm" onclick="isAdm=false; closeOv(); toast('Sesión cerrada');">Salir</button>
+      </div>
+      <input type="file" id="imp" accept=".json" hidden onchange="impo(this)">
+    </div>
+  `);
+}
+
+function saveCfg() {
+  const g = id => $(id).value.trim();
+  Object.assign(S.cfg, {
+    name: g('c_name') || 'ProStore Digital',
+    phone: g('c_phone'),
+    whats: g('c_whats'),
+    insta: g('c_insta'),
+    cur: g('c_cur') || '$',
+    cbu: g('c_cbu'),
+    alias: g('c_alias'),
+    mpLink: g('c_mpl'),
+    pass: g('c_pass') || '1234'
+  });
+  save();
+  render();
+  toast('Configuración guardada ✅');
+}
+
+function addCoupon() {
+  const code = $('cp_new_code').value.trim().toUpperCase();
+  const discount = +$('cp_new_val').value;
+  const type = $('cp_new_type').value;
+
+  if(!code || !discount) return toast('Completa los campos del cupón');
+  S.coupons.push({ code, discount, type, active: true });
+  save();
+  adminPanel();
+  toast('Cupón creado con éxito ✨');
+}
+
+function delCoupon(idx) {
+  S.coupons.splice(idx, 1);
+  save();
+  adminPanel();
+  toast('Cupón eliminado');
+}
+
+let tmpImg = '';
+function editP(id) {
+  const p = S.prods.find(x => x.id === id) || { name: '', price: '', cat: '', desc: '', cuotas: 6, stock: 10, tag: '', img: '' };
+  tmpImg = p.img;
+
+  showOv(`
+    <div class="sheet-header">
+      <h3 class="sheet-title">${id ? 'Editar Producto' : 'Nuevo Producto'}</h3>
+      <button class="ib" onclick="adminPanel()">${ICONS.close}</button>
+    </div>
+    <div class="pad">
+      <label>Imagen (Archivo o SVG Vector Generado)</label>
+      <input type="file" accept="image/*" onchange="pimg(this)">
+      <img id="pv" src="${p.img}" style="width:100px; height:100px; object-fit:cover; border-radius:var(--radius-md); margin-top:8px; ${p.img ? '' : 'display:none'}">
+
+      <label>Nombre del Producto</label>
+      <input id="p_n" value="${esc(p.name)}">
+      <label>Precio</label>
+      <input id="p_p" type="number" value="${p.price}">
+      <label>Categoría</label>
+      <input id="p_c" value="${esc(p.cat)}" placeholder="Audio, Relojes, Hogar...">
+      <label>Etiqueta / Tag (Opcional)</label>
+      <input id="p_t" value="${esc(p.tag)}" placeholder="Oferta, Nuevo, Más Vendido...">
+      <label>Descripción</label>
+      <textarea id="p_d" rows="3">${esc(p.desc)}</textarea>
+      <label>Stock Disponible</label>
+      <input id="p_s" type="number" value="${p.stock}">
+
+      <button class="btn" style="margin-top:16px;" onclick="saveP(${id || 0})">Guardar Producto</button>
+    </div>
+  `);
+}
+
+function pimg(i) {
+  const f = i.files[0];
+  if(!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    const im = new Image();
+    im.onload = () => {
+      const s = Math.min(1, 800 / Math.max(im.width, im.height));
+      const c = document.createElement('canvas');
+      c.width = im.width * s;
+      c.height = im.height * s;
+      c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+      tmpImg = c.toDataURL('image/jpeg', 0.82);
+      $('pv').src = tmpImg;
+      $('pv').style.display = 'block';
+    };
+    im.src = r.result;
+  };
+  r.readAsDataURL(f);
+}
+
+function saveP(id) {
+  const n = $('p_n').value.trim();
+  const p = +$('p_p').value;
+  if(!n || !p) return toast('Completa nombre y precio');
+
+  const obj = {
+    name: n,
+    price: p,
+    cat: $('p_c').value.trim() || 'General',
+    tag: $('p_t').value.trim(),
+    desc: $('p_d').value.trim(),
+    cuotas: 6,
+    stock: +$('p_s').value || 0,
+    img: tmpImg || svgIllustration('#ec4899', '#8b5cf6', 'audio'),
+    rating: 5.0,
+    reviews: []
+  };
+
+  if(id) {
+    const existing = S.prods.find(x => x.id === id);
+    Object.assign(existing, obj);
+  } else {
+    S.prods.push({ id: Date.now(), ...obj });
+  }
+
+  save();
+  render();
+  adminPanel();
+  toast('Producto guardado con éxito ✅');
+}
+
+function delP(id) {
+  if(confirm('¿Seguro que deseas eliminar este producto?')) {
+    S.prods = S.prods.filter(p => p.id !== id);
+    save();
+    render();
+    adminPanel();
+    toast('Producto eliminado');
+  }
+}
+
+function expo() {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(S)], {type: 'application/json'}));
+  a.download = 'prostore-backup.json';
+  a.click();
+}
+
+function impo(i) {
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      S = JSON.parse(r.result);
+      save();
+      render();
+      adminPanel();
+      toast('Datos importados con éxito ✅');
+    } catch {
+      toast('Archivo JSON inválido');
+    }
+  };
+  r.readAsText(i.files[0]);
+}
+
+/* Helper sheet triggers */
+function showOv(h) {
+  $('sh').innerHTML = h;
+  $('ov').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeOv() {
+  $('ov').classList.remove('show');
+  document.body.style.overflow = '';
+}
+function acc(el) {
+  el.parentElement.classList.toggle('open');
+}
+
+// Initial Boot
+initIcons();
 render();
-</script></body></html>
+</script>
+</body>
+</html>
